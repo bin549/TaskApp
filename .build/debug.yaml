@@ -1,0 +1,81 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "main": ["<task-arm64-apple-macosx15.0-debug.exe>","<task-arm64-apple-macosx15.0-debug.module>"]
+  "task-arm64-apple-macosx15.0-debug.exe": ["<task-arm64-apple-macosx15.0-debug.exe>"]
+  "task-arm64-apple-macosx15.0-debug.module": ["<task-arm64-apple-macosx15.0-debug.module>"]
+  "test": ["<task-arm64-apple-macosx15.0-debug.exe>","<task-arm64-apple-macosx15.0-debug.module>"]
+default: "main"
+nodes:
+  "/Users/Shared/1_work/app/task.swiftpm/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task":
+    is-mutated: true
+commands:
+  "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
+    outputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+
+  "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task-entitlement.plist":
+    tool: write-auxiliary-file
+    inputs: ["<entitlement-plist>","<com.apple.security.get-task-allow>"]
+    outputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task-entitlement.plist"]
+    description: "Write auxiliary file /Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task-entitlement.plist"
+
+  "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/Shared/1_work/app/task.swiftpm/ContentView.swift","/Users/Shared/1_work/app/task.swiftpm/MyApp.swift"]
+    outputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/sources"]
+    description: "Write auxiliary file /Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/sources"
+
+  "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/ContentView.swift.o","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/MyApp.swift.o"]
+    outputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.product/Objects.LinkFileList"
+
+  "<task-arm64-apple-macosx15.0-debug.exe>":
+    tool: phony
+    inputs: ["<task-arm64-apple-macosx15.0-debug.exe-CodeSigning>"]
+    outputs: ["<task-arm64-apple-macosx15.0-debug.exe>"]
+
+  "<task-arm64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/ContentView.swift.o","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/MyApp.swift.o","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/Modules/task.swiftmodule"]
+    outputs: ["<task-arm64-apple-macosx15.0-debug.module>"]
+
+  "C.task-arm64-apple-macosx15.0-debug.exe":
+    tool: shell
+    inputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/ContentView.swift.o","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/MyApp.swift.o","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.product/Objects.LinkFileList"]
+    outputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task"]
+    description: "Linking ./.build/arm64-apple-macosx/debug/task"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug","-o","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task","-module-name","task","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-alias","-Xlinker","_task_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.product/Objects.LinkFileList","-Xlinker","-rpath","-Xlinker","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.5/macosx","-target","arm64-apple-macosx10.13","-Xlinker","-add_ast_path","-Xlinker","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/Modules/task.swiftmodule","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "C.task-arm64-apple-macosx15.0-debug.exe-entitlements":
+    tool: shell
+    inputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task-entitlement.plist"]
+    outputs: ["<task-arm64-apple-macosx15.0-debug.exe-CodeSigning>"]
+    description: "Applying debug entitlements to ./.build/arm64-apple-macosx/debug/task"
+    args: ["codesign","--force","--sign","-","--entitlements","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task-entitlement.plist","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task"]
+
+  "C.task-arm64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/Shared/1_work/app/task.swiftpm/ContentView.swift","/Users/Shared/1_work/app/task.swiftpm/MyApp.swift","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/sources"]
+    outputs: ["/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/ContentView.swift.o","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/MyApp.swift.o","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/Modules/task.swiftmodule"]
+    description: "Compiling Swift Module 'task' (2 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","task","-emit-dependencies","-emit-module","-emit-module-path","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/Modules/task.swiftmodule","-output-file-map","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/output-file-map.json","-incremental","-c","@/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/sources","-I","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx10.13","-enable-batch-mode","-index-store-path","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j8","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","task_main","-color-diagnostics","-swift-version","5","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/Shared/1_work/app/task.swiftpm/","/Users/Shared/1_work/app/task.swiftpm/Package.swift","/Users/Shared/1_work/app/task.swiftpm/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

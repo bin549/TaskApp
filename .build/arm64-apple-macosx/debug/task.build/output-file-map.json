@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/master.swiftdeps"
+  },
+  "/Users/Shared/1_work/app/task.swiftpm/ContentView.swift": {
+    "dependencies": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/ContentView.d",
+    "object": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/ContentView.swift.o",
+    "swiftmodule": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/ContentView.swiftdeps"
+  },
+  "/Users/Shared/1_work/app/task.swiftpm/MyApp.swift": {
+    "dependencies": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/MyApp.d",
+    "object": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/MyApp.swift.o",
+    "swiftmodule": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/MyApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/Shared/1_work/app/task.swiftpm/.build/arm64-apple-macosx/debug/task.build/MyApp.swiftdeps"
+  }
+}
